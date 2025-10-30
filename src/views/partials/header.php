@@ -14,7 +14,7 @@
         
         <div class="nav-left">
             <a href="<?php echo htmlspecialchars($basePath, ENT_QUOTES, 'UTF-8'); ?>/" class="logo-link">
-                <img src="<?php echo htmlspecialchars($basePath, ENT_QUOTES, 'UTF-8'); ?>/img/logo.png" alt="PinguWI Logo" class="logo">
+                <img src="<?php echo htmlspecialchars($basePath, ENT_QUOTES, 'UTF-8'); ?>/img/logo.png" alt="PinguWI Logo" class="logo responsive-logo">
             </a>
 
             <ul>
@@ -58,7 +58,12 @@
 
         </div> </div> </nav>
 
-    <nav class="nav-courses">
+    <nav class="nav-courses" id="nav-courses-bar">
+        
+        <button id="burger-menu-button" class="burger-menu-button">
+            ☰ Menü
+        </button>
+
         <ul>
             
             <?php

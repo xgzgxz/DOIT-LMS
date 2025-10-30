@@ -21,5 +21,5 @@
         </p>
     </footer>
 
-</body>
+<script src="<?php echo htmlspecialchars($basePath, ENT_QUOTES, 'UTF-8'); ?>/js/mobile-nav.js"></script></body>
 </html>

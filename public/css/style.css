@@ -90,13 +90,27 @@ h6 {
 }
 
 h1 {
-  font-size: 2.2em;
+  font-size: 1.8em;
   border-bottom: 2px solid var(--border-color);
   padding-bottom: 5px;
 }
 
+/* Tablet und größer */
+@media (min-width: 768px) {
+  h1 {
+    font-size: 2.2em;
+  }
+}
+
 h2 {
-  font-size: 1.8em;
+  font-size: 1.5em;
+}
+
+/* Tablet und größer */
+@media (min-width: 768px) {
+  h2 {
+    font-size: 1.8em;
+  }
 }
 
 p {
@@ -116,9 +130,8 @@ hr {
 */
 
 main {
-  max-width: 1200px;
-  margin: 2em auto;
-  padding: 1em 2em;
+  margin: 1em;
+  padding: 1em;
   background-color: var(--content-bg);
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
@@ -129,19 +142,63 @@ main {
   flex-grow: 1;
 }
 
+/* Tablet und größer */
+@media (min-width: 768px) {
+  main {
+    margin: 2em auto;
+    padding: 1em 2em;
+  }
+}
+
+/* Desktop und größer */
+@media (min-width: 1024px) {
+  main {
+    max-width: 1200px;
+  }
+}
+
 .lesson-layout {
   display: flex;
+  flex-direction: column;
+}
+
+/* Desktop und größer: Nebeneinander-Layout */
+@media (min-width: 1024px) {
+  .lesson-layout {
+    flex-direction: row;
+  }
 }
 
 .sidebar {
-  flex-basis: 25%;
-  padding-right: 20px;
-  border-right: 1px solid var(--border-color);
+  padding-right: 0;
+  padding-bottom: 20px;
+  border-right: none;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Desktop und größer: Seitenleiste als linke Spalte */
+@media (min-width: 1024px) {
+  .sidebar {
+    flex-basis: 25%;
+    padding-right: 20px;
+    padding-bottom: 0;
+    border-right: 1px solid var(--border-color);
+    border-bottom: none;
+  }
 }
 
 .lesson-content {
-  flex-basis: 75%;
-  padding-left: 20px;
+  padding-left: 0;
+  padding-top: 20px;
+}
+
+/* Desktop und größer: Inhalt als rechte Spalte */
+@media (min-width: 1024px) {
+  .lesson-content {
+    flex-basis: 75%;
+    padding-left: 20px;
+    padding-top: 0;
+  }
 }
 
 /*
@@ -152,37 +209,91 @@ main {
 
 nav {
   background: var(--content-bg);
-  padding: 1em;
+  padding: 0.75em;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Tablet und größer */
+@media (min-width: 768px) {
+  nav {
+    padding: 1em;
+  }
 }
 
 .nav-main-content {
   display: flex;
-  align-items: center;
-  justify-content: space-between; 
-  max-width: 1200px;
-  margin: 0 auto;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1em;
+}
+
+/* Tablet und größer: Horizontales Layout */
+@media (min-width: 768px) {
+  .nav-main-content {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 }
 
 .nav-left {
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+
+/* Tablet und größer */
+@media (min-width: 768px) {
+  .nav-left {
+    justify-content: flex-start;
+  }
 }
 
 .nav-right {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1em;
+}
+
+/* Tablet und größer: Horizontales Layout */
+@media (min-width: 768px) {
+  .nav-right {
+    flex-direction: row;
+    align-items: center;
+  }
 }
 
 .nav-right ul {
     display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+}
+
+/* Tablet und größer: Horizontales Layout */
+@media (min-width: 768px) {
+  .nav-right ul {
+    flex-direction: row;
     align-items: center;
+    width: auto;
+  }
 }
 
 .logo {
-  max-height: 100px;
+  max-height: 80px;
   width: auto;
-  margin-right: 20px;
+  margin-right: 10px;
+}
+
+/* Tablet und größer */
+@media (min-width: 768px) {
+  .logo {
+    max-height: 100px;
+    margin-right: 20px;
+  }
 }
 
 nav ul {
@@ -190,19 +301,44 @@ nav ul {
   padding: 0;
   margin: 0;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Tablet und größer */
+@media (min-width: 768px) {
+  nav ul {
+    flex-direction: row;
+    align-items: center;
+  }
 }
 
 nav li {
-  margin-right: 15px;
+  margin-right: 0;
+  margin-bottom: 0.5em;
+}
+
+/* Tablet und größer */
+@media (min-width: 768px) {
+  nav li {
+    margin-right: 15px;
+    margin-bottom: 0;
+  }
 }
 
 #project-name {
   font-family: var(--font-heading); /* Nutzt die Überschriften-Schriftart (Lato) */
-  font-size: 1.6em;                  /* Deutlich größer */
+  font-size: 1.4em;                  /* Responsive: kleiner auf Mobile */
   font-weight: 700;                  /* Fett */
   color: var(--text-color);          /* Normale Textfarbe statt Link-Farbe */
   vertical-align: middle;            /* Bessere vertikale Ausrichtung */
+}
+
+/* Tablet und größer */
+@media (min-width: 768px) {
+  #project-name {
+    font-size: 1.6em;
+  }
 }
 
 /* NEU: Hover-Effekt für den Projekt-Namen anpassen */
@@ -226,9 +362,16 @@ nav li {
 footer {
   background: var(--footer-bg);
   color: var(--text-on-dark);
-  padding: 2em 1em; /* Etwas mehr Padding für mehr Luft */
+  padding: 1.5em 0.5em;
   text-align: center;
   margin-top: 2em;
+}
+
+/* Tablet und größer */
+@media (min-width: 768px) {
+  footer {
+    padding: 2em 1em;
+  }
 }
 
 .footer-links a {
@@ -277,12 +420,20 @@ footer {
 */
 
 .form-container {
-  max-width: 500px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 2em;
+  padding: 1.5em;
   border: 1px solid var(--border-color);
   border-radius: 8px;
   background-color: var(--content-bg);
+}
+
+/* Tablet und größer */
+@media (min-width: 768px) {
+  .form-container {
+    max-width: 500px;
+    padding: 2em;
+  }
 }
 
 .form-group {
@@ -382,12 +533,34 @@ button:hover {
 */
 
 .search-bar {
-margin-right: 15px;
+  margin-right: 0;
+  margin-bottom: 1em;
+  width: 100%;
+}
+
+/* Tablet und größer */
+@media (min-width: 768px) {
+  .search-bar {
+    margin-right: 15px;
+    margin-bottom: 0;
+    width: auto;
+  }
 }
 
 .search-bar form {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5em;
+}
+
+/* Tablet und größer: Horizontales Layout */
+@media (min-width: 768px) {
+  .search-bar form {
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+  }
 }
 
 .search-bar label {
@@ -403,9 +576,17 @@ margin-right: 15px;
 }
 
 .search-bar input[type="search"] {
-  width: auto;
+  width: 100%;
   margin-bottom: 0;
-  margin-right: 10px;
+  margin-right: 0;
+}
+
+/* Tablet und größer */
+@media (min-width: 768px) {
+  .search-bar input[type="search"] {
+    width: auto;
+    margin-right: 10px;
+  }
 }
 
 .search-bar button {
@@ -423,8 +604,22 @@ margin-right: 15px;
 
 .course-catalog-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   gap: 20px;
+}
+
+/* Tablet: 2 Spalten */
+@media (min-width: 768px) {
+  .course-catalog-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop: auto-fit mit mindestens 300px */
+@media (min-width: 1024px) {
+  .course-catalog-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
 }
 
 .course-card {
@@ -474,10 +669,27 @@ margin-right: 15px;
   padding: 0;
   margin: 0;
   display: flex;
+  flex-direction: column;
+}
+
+/* Tablet und größer */
+@media (min-width: 768px) {
+  .nav-courses ul {
+    flex-direction: row;
+  }
 }
 
 .nav-courses li {
-  margin-right: 15px;
+  margin-right: 0;
+  margin-bottom: 0.5em;
+}
+
+/* Tablet und größer */
+@media (min-width: 768px) {
+  .nav-courses li {
+    margin-right: 15px;
+    margin-bottom: 0;
+  }
 }
 
 .sidebar ul {
@@ -541,4 +753,160 @@ margin-right: 15px;
 #quiz-feedback {
   margin-top: 15px;
   font-weight: bold;
+}
+/*
+| ===================================================================
+|  Mobile First: Hauptnavigation
+| ===================================================================
+*/
+
+/* (Das Logo kleiner machen, falls noch nicht geschehen) */
+.responsive-logo {
+  max-height: 50px;
+  width: auto;
+}
+
+/* Das Logo und der rechte Teil sollen untereinander (column) */
+.nav-main-content {
+  flex-direction: column;
+  align-items: flex-start; /* Logo linksbündig */
+}
+
+/* Der rechte Teil (Suche + Links) ... */
+.nav-right {
+  flex-direction: column; /* ... soll auch seine Kinder stapeln */
+  width: 100%; /* Volle Breite nutzen */
+  align-items: flex-end; /* WICHTIG: Die Kinder rechtsbündig ausrichten */
+}
+
+.search-bar {
+  width: 100%; /* Suchleiste soll volle Breite einnehmen */
+  margin-right: 0;
+}
+
+.search-bar form {
+    width: 100%;
+}
+  
+.search-bar input[type="search"] {
+    flex-grow: 1; /* Suchfeld soll so breit wie möglich werden */
+}
+
+/* Die Login/Register-Links */
+.nav-right ul {
+  flex-direction: row; /* Links nebeneinander (in einer Reihe) */
+  width: auto; /* Nur so breit wie der Inhalt */
+}
+
+/* Wir überschreiben die Desktop-Regel 'margin-right: 15px' */
+nav li {
+   /* 5px oben/unten, 10px links/rechts */
+   margin: 5px 10px;
+}
+
+/* Den "Hallo"-Text auf Mobil ausblenden, spart Platz */
+.user-info {
+  display: none;
+}
+
+/*
+| ===================================================================
+|  Mobile First Burger Menü
+| ===================================================================
+*/
+
+/* --- 1. Mobile-Ansicht (Standard) --- */
+/* Das ist die Basis: Das Menü ist versteckt, der Knopf ist sichtbar. */
+
+.burger-menu-button {
+  display: block; /* Knopf auf Mobil anzeigen */
+  background: none;
+  border: none;
+  color: var(--text-on-dark);
+  font-size: 1.2em;
+  padding: 0.5em;
+  cursor: pointer;
+}
+
+.nav-courses ul {
+  display: none; /* Die Kursliste standardmäßig (auf Mobil) verstecken */
+  flex-direction: column; /* Links sollen untereinander */
+  width: 100%;
+}
+
+.nav-courses {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* HIER PASSIERT DIE MAGIE:
+   Wenn unser JS die Klasse 'nav-courses-open' hinzufügt,
+   wird diese Regel aktiv und zeigt die Liste (ul) an! */
+.nav-courses.nav-courses-open ul {
+  display: flex; /* anzeigen! */
+}
+
+
+/*
+| ===================================================================
+|  Media Query: Regeln für GROSSE Bildschirme (Desktop)
+|  min-width = "alles, was GRÖSSER als 768px ist"
+| ===================================================================
+*/
+@media (min-width: 769px) {
+
+  
+  .burger-menu-button {
+    display: none; /* ... den Burger-Knopf verstecken */
+  }
+
+  .nav-courses ul {
+    display: flex; /* ... die Kursliste IMMER anzeigen */
+    flex-direction: row; /* ... und nebeneinander (row) anordnen */
+    width: auto;
+  }
+  
+  .nav-courses {
+     /* (Falls du hier 'flex-direction: column' hattest, ändere es zurück) */
+    flex-direction: row;
+    align-items: center;
+  }
+
+  /* --- Desktop: Hauptnavigation --- */
+  
+  .nav-main-content {
+    flex-direction: row; /* Auf Desktop wieder nebeneinander */
+    align-items: center;
+    /* justify-content: space-between; (sollte schon da sein) */
+  }
+
+  .nav-right {
+    flex-direction: row; /* Auch hier: nebeneinander */
+    width: auto;
+    align-items: center;
+  }
+  
+  .search-bar {
+    width: auto; /* Breite zurücksetzen */
+    margin-right: 15px; /* Desktop-Abstand wiederherstellen */
+  }
+  
+  .search-bar form {
+      width: auto;
+  }
+    
+  .search-bar input[type="search"] {
+      flex-grow: 0; /* Normales Verhalten */
+  }
+  
+  /* Desktop-Abstände für Links wiederherstellen */
+  nav li {
+    margin: 0; /* Mobile Marge zurücksetzen */
+    margin-right: 15px; /* Desktop Marge setzen */
+  }
+  
+  /* "Hallo"-Text auf Desktop wieder einblenden */
+  .user-info {
+    display: block;
+  }
 }
