@@ -162,7 +162,7 @@ main {
   flex-direction: column;
 }
 
-/* Desktop und größer: Side-by-side layout */
+/* Desktop und größer: Nebeneinander-Layout */
 @media (min-width: 1024px) {
   .lesson-layout {
     flex-direction: row;
@@ -176,7 +176,7 @@ main {
   border-bottom: 1px solid var(--border-color);
 }
 
-/* Desktop und größer: Sidebar als linke Spalte */
+/* Desktop und größer: Seitenleiste als linke Spalte */
 @media (min-width: 1024px) {
   .sidebar {
     flex-basis: 25%;
@@ -192,7 +192,7 @@ main {
   padding-top: 20px;
 }
 
-/* Desktop und größer: Content als rechte Spalte */
+/* Desktop und größer: Inhalt als rechte Spalte */
 @media (min-width: 1024px) {
   .lesson-content {
     flex-basis: 75%;
@@ -227,7 +227,7 @@ nav {
   gap: 1em;
 }
 
-/* Tablet und größer: Horizontal layout */
+/* Tablet und größer: Horizontales Layout */
 @media (min-width: 768px) {
   .nav-main-content {
     flex-direction: row;
@@ -258,7 +258,7 @@ nav {
   gap: 1em;
 }
 
-/* Tablet und größer: Horizontal layout */
+/* Tablet und größer: Horizontales Layout */
 @media (min-width: 768px) {
   .nav-right {
     flex-direction: row;
@@ -273,7 +273,7 @@ nav {
     width: 100%;
 }
 
-/* Tablet und größer: Horizontal layout */
+/* Tablet und größer: Horizontales Layout */
 @media (min-width: 768px) {
   .nav-right ul {
     flex-direction: row;
@@ -554,7 +554,7 @@ button:hover {
   gap: 0.5em;
 }
 
-/* Tablet und größer */
+/* Tablet und größer: Horizontales Layout */
 @media (min-width: 768px) {
   .search-bar form {
     flex-direction: row;
@@ -608,14 +608,14 @@ button:hover {
   gap: 20px;
 }
 
-/* Tablet: 2 columns */
+/* Tablet: 2 Spalten */
 @media (min-width: 768px) {
   .course-catalog-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Desktop: auto-fit with min 300px */
+/* Desktop: auto-fit mit mindestens 300px */
 @media (min-width: 1024px) {
   .course-catalog-grid {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
