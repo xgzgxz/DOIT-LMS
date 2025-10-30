@@ -910,3 +910,26 @@ nav li {
     display: block;
   }
 }
+
+/*
+| ===================================================================
+| Eigene Bullet-Points (Aufzählungszeichen)
+| ===================================================================
+*/
+
+
+.lesson-content ul,
+.form-message ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.lesson-content li,
+.form-message li {
+  padding-left: 30px;
+  background-image: url('../img/bullet.png');
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 16px 16px;
+  margin-bottom: 5px;
+}
