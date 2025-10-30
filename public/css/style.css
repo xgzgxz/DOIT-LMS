@@ -52,6 +52,17 @@ body {
   font-family: var(--font-body);
   line-height: 1.6;
   margin: 0;
+  
+  /* --- NEU: Sticky Footer Logik --- */
+
+  /* 1. Macht den Body zu einem Container, der seine Kinder (nav, main, footer) anordnet */
+  display: flex;
+  
+  /* 2. Sagt dem Container, er soll seine Kinder vertikal stapeln */
+  flex-direction: column;
+  
+  /* 3. Sagt dem Body, er soll MINDESTENS 100% der Bildschirmhöhe einnehmen */
+  min-height: 100vh;
 }
 
 /* Allgemeine Typografie- und Element-Stile */
@@ -111,6 +122,11 @@ main {
   background-color: var(--content-bg);
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+
+  /* --- NEU: Sticky Footer Logik --- */
+  
+  /* 1. Sagt dem Main-Block: "Nimm allen freien Platz ein, der übrig ist" */
+  flex-grow: 1;
 }
 
 .lesson-layout {
