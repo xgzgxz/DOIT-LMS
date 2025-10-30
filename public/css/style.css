@@ -1,0 +1,528 @@
+/*
+| ===================================================================
+|  PinguWI Arctic Theme - Globale Stile
+| ===================================================================
+*/
+
+/* Google Fonts importieren (Nunito Sans & Lato) */
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Nunito+Sans:wght@400;700&display=swap");
+
+:root {
+  /* Schriftarten als CSS-Variablen deklarieren */
+  --font-body: "Nunito Sans", sans-serif;
+  --font-heading: "Lato", sans-serif;
+
+  /* Links & Aktionen */
+  --link-color: #2c8dc9;
+  --link-hover: #6baedc;
+  --button-bg-color: #d2e7f3;
+  --button-bg-hover: #dbecf5;
+  --accent-color: #f4e15a;
+
+  /* Textfarben */
+  --text-color: #492e2e;
+  --secondary-text-color: #737899;
+  --light-text-color: #a7aac2;
+  --text-on-dark: #fffdf5;
+
+  /* Hintergrundfarben */
+  --content-bg: #fffdf5;
+  --page-bg: #e5f5f7;
+  --active-bg: #c7ede6;
+  --footer-bg: #223a4a;
+
+  /* UI-Farben */
+  --border-color: #caeff7;
+
+  /* Farben für Benachrichtigungen */
+  --success-bg: #eef9bf;
+  --success-color: #5f7400;
+  --success-border: #d9ec88;
+  --error-bg: #f8d7da;
+  --error-color: #842029;
+  --error-border: #f5c2c7;
+  --info-bg: #cff4fc;
+  --info-color: #055160;
+  --info-border: #b6effb;
+}
+
+body {
+  background: var(--page-bg) url("../img/bg.jpg") center/cover no-repeat fixed;
+  color: var(--text-color);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Allgemeine Typografie- und Element-Stile */
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color 0.2s, text-decoration 0.2s;
+}
+
+a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  color: var(--text-color);
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  font-size: 2.2em;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 5px;
+}
+
+h2 {
+  font-size: 1.8em;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border-color);
+  margin: 2em 0;
+}
+
+/*
+| ===================================================================
+|  Layout-Struktur
+| ===================================================================
+*/
+
+main {
+  max-width: 1200px;
+  margin: 2em auto;
+  padding: 1em 2em;
+  background-color: var(--content-bg);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.lesson-layout {
+  display: flex;
+}
+
+.sidebar {
+  flex-basis: 25%;
+  padding-right: 20px;
+  border-right: 1px solid var(--border-color);
+}
+
+.lesson-content {
+  flex-basis: 75%;
+  padding-left: 20px;
+}
+
+/*
+| ===================================================================
+|  Komponente: Navigation
+| ===================================================================
+*/
+
+nav {
+  background: var(--content-bg);
+  padding: 1em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-main-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.nav-right ul {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+  max-height: 100px;
+  width: auto;
+  margin-right: 20px;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+nav li {
+  margin-right: 15px;
+}
+
+#project-name {
+  font-family: var(--font-heading); /* Nutzt die Überschriften-Schriftart (Lato) */
+  font-size: 1.6em;                  /* Deutlich größer */
+  font-weight: 700;                  /* Fett */
+  color: var(--text-color);          /* Normale Textfarbe statt Link-Farbe */
+  vertical-align: middle;            /* Bessere vertikale Ausrichtung */
+}
+
+/* NEU: Hover-Effekt für den Projekt-Namen anpassen */
+#project-name:hover {
+  color: var(--text-color); /* Farbe soll sich nicht ändern */
+  text-decoration: none;    /* Keine Unterstreichung beim Hover */
+}
+
+
+/* Platzhalter für die rechtsbündige Ausrichtung von Login etc. */
+.nav-item-right-aligned {
+  margin-left: auto;
+}
+
+/*
+| ===================================================================
+|  Komponente: Footer
+| ===================================================================
+*/
+
+footer {
+  background: var(--footer-bg);
+  color: var(--text-on-dark);
+  padding: 2em 1em; /* Etwas mehr Padding für mehr Luft */
+  text-align: center;
+  margin-top: 2em;
+}
+
+.footer-links a {
+  color: var(--text-on-dark);
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: bold; /* Macht die Hauptlinks etwas wichtiger */
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+  color: var(--link-hover);
+}
+
+.footer-links span {
+  color: var(--secondary-text-color);
+}
+
+/* NEU: Styling für die Quellenangaben */
+.footer-credits {
+  margin: 1.5em 0;
+  font-size: 0.85em;
+  color: var(--light-text-color);
+}
+
+.footer-credits a {
+  color: var(--light-text-color);
+  text-decoration: underline;
+}
+
+.footer-credits a:hover {
+  color: var(--link-hover);
+}
+
+/* Umbenannt von footer p zu .footer-copyright für mehr Klarheit */
+.footer-copyright {
+  margin: 0;
+  font-size: 0.9em;
+  color: var(--light-text-color);
+}
+
+/*
+| ===================================================================
+|  Komponente: Formulare (Allgemein)
+| ===================================================================
+*/
+
+.form-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 2em;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--content-bg);
+}
+
+.form-group {
+  margin-bottom: 1em;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="search"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: var(--content-bg);
+  color: var(--text-color);
+}
+
+button {
+  background-color: var(--button-bg-color);
+  color: var(--text-color);
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: var(--button-bg-hover);
+}
+
+/* Helferklasse, um einen Link wie einen Button aussehen zu lassen */
+.button-link {
+  display: block;
+  background-color: var(--button-bg-color);
+  color: var(--text-color);
+  font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.2s;
+  text-align: center;
+}
+
+.button-link:hover {
+  background-color: var(--button-bg-hover);
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+/*
+| ===================================================================
+|  Komponente: Formular-Meldungen (Erfolg, Fehler, Info)
+| ===================================================================
+*/
+
+.form-message {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid;
+  border-radius: 4px;
+}
+
+.form-message.is-success {
+  color: var(--success-color);
+  background-color: var(--success-bg);
+  border-color: var(--success-border);
+}
+
+.form-message.is-error {
+  color: var(--error-color);
+  background-color: var(--error-bg);
+  border-color: var(--error-border);
+}
+
+.form-message.is-info {
+  color: var(--info-color);
+  background-color: var(--info-bg);
+  border-color: var(--info-border);
+}
+
+/*
+| ===================================================================
+|  Komponente: Suchleiste
+| ===================================================================
+*/
+
+.search-bar {
+margin-right: 15px;
+}
+
+.search-bar form {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar label {
+  /* Label für Screenreader erhalten, aber visuell verstecken */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.search-bar input[type="search"] {
+  width: auto;
+  margin-bottom: 0;
+  margin-right: 10px;
+}
+
+.search-bar button {
+  flex-shrink: 0;
+}
+.search-bar button:hover {
+  background-color: var(--button-bg-hover);
+}
+
+/*
+| ===================================================================
+|  Komponente: Kurs-Katalog
+| ===================================================================
+*/
+
+.course-catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.course-card {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--content-bg);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.course-card-content {
+  padding: 1.5em;
+  flex-grow: 1;
+}
+
+.course-card h3 {
+  font-size: 1.4em;
+  border-bottom: none;
+  margin-top: 0;
+  color: var(--link-color);
+}
+
+.course-card-actions {
+  padding: 0 1.5em 1.5em;
+}
+
+/*
+| ===================================================================
+|  Komponente: Kurs-Navigation & Sidebar
+| ===================================================================
+*/
+
+.nav-courses {
+  background-color: var(--active-bg);
+  padding: 0.5em 1em;
+}
+
+.nav-courses ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.nav-courses li {
+  margin-right: 15px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.sidebar li a {
+  text-decoration: none;
+  display: block;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.sidebar li a:hover {
+  background-color: var(--border-color);
+}
+
+.sidebar li.active a {
+  background-color: var(--active-bg);
+  font-weight: bold;
+}
+
+/*
+| ===================================================================
+|  Komponente: Quiz
+| ===================================================================
+*/
+
+.quiz-answers {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1em;
+}
+
+.quiz-answers li {
+  margin-bottom: 0.5em;
+  display: flex;
+  align-items: center;
+}
+
+.quiz-answers label {
+  padding: 8px;
+  flex-grow: 1;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.quiz-answers input[type="radio"] {
+  margin-right: 10px;
+}
+
+.quiz-answers label:hover {
+  background-color: var(--page-bg);
+  border-color: var(--border-color);
+}
+
+#quiz-feedback {
+  margin-top: 15px;
+  font-weight: bold;
+}
