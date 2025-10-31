@@ -53,15 +53,9 @@ body {
   line-height: 1.6;
   margin: 0;
   
-  /* --- NEU: Sticky Footer Logik --- */
-
-  /* 1. Macht den Body zu einem Container, der seine Kinder (nav, main, footer) anordnet */
+  /* --- Sticky Footer Logik --- */
   display: flex;
-  
-  /* 2. Sagt dem Container, er soll seine Kinder vertikal stapeln */
   flex-direction: column;
-  
-  /* 3. Sagt dem Body, er soll MINDESTENS 100% der Bildschirmhöhe einnehmen */
   min-height: 100vh;
 }
 
@@ -95,7 +89,6 @@ h1 {
   padding-bottom: 5px;
 }
 
-/* Tablet und größer */
 @media (min-width: 768px) {
   h1 {
     font-size: 2.2em;
@@ -106,7 +99,6 @@ h2 {
   font-size: 1.5em;
 }
 
-/* Tablet und größer */
 @media (min-width: 768px) {
   h2 {
     font-size: 1.8em;
@@ -135,10 +127,7 @@ main {
   background-color: var(--content-bg);
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-
-  /* --- NEU: Sticky Footer Logik --- */
-  
-  /* 1. Sagt dem Main-Block: "Nimm allen freien Platz ein, der übrig ist" */
+  /* --- Sticky Footer Logik --- */
   flex-grow: 1;
 }
 
@@ -150,7 +139,6 @@ main {
   }
 }
 
-/* Desktop und größer */
 @media (min-width: 1024px) {
   main {
     max-width: 1200px;
@@ -162,7 +150,6 @@ main {
   flex-direction: column;
 }
 
-/* Desktop und größer: Nebeneinander-Layout */
 @media (min-width: 1024px) {
   .lesson-layout {
     flex-direction: row;
@@ -176,7 +163,6 @@ main {
   border-bottom: 1px solid var(--border-color);
 }
 
-/* Desktop und größer: Seitenleiste als linke Spalte */
 @media (min-width: 1024px) {
   .sidebar {
     flex-basis: 25%;
@@ -192,7 +178,6 @@ main {
   padding-top: 20px;
 }
 
-/* Desktop und größer: Inhalt als rechte Spalte */
 @media (min-width: 1024px) {
   .lesson-content {
     flex-basis: 75%;
@@ -213,7 +198,6 @@ nav {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Tablet und größer */
 @media (min-width: 768px) {
   nav {
     padding: 1em;
@@ -227,7 +211,6 @@ nav {
   gap: 1em;
 }
 
-/* Tablet und größer: Horizontales Layout */
 @media (min-width: 768px) {
   .nav-main-content {
     flex-direction: row;
@@ -244,7 +227,6 @@ nav {
   justify-content: center;
 }
 
-/* Tablet und größer */
 @media (min-width: 768px) {
   .nav-left {
     justify-content: flex-start;
@@ -258,7 +240,6 @@ nav {
   gap: 1em;
 }
 
-/* Tablet und größer: Horizontales Layout */
 @media (min-width: 768px) {
   .nav-right {
     flex-direction: row;
@@ -273,7 +254,6 @@ nav {
     width: 100%;
 }
 
-/* Tablet und größer: Horizontales Layout */
 @media (min-width: 768px) {
   .nav-right ul {
     flex-direction: row;
@@ -288,7 +268,6 @@ nav {
   margin-right: 10px;
 }
 
-/* Tablet und größer */
 @media (min-width: 768px) {
   .logo {
     max-height: 100px;
@@ -305,7 +284,6 @@ nav ul {
   align-items: stretch;
 }
 
-/* Tablet und größer */
 @media (min-width: 768px) {
   nav ul {
     flex-direction: row;
@@ -318,7 +296,6 @@ nav li {
   margin-bottom: 0.5em;
 }
 
-/* Tablet und größer */
 @media (min-width: 768px) {
   nav li {
     margin-right: 15px;
@@ -327,28 +304,24 @@ nav li {
 }
 
 #project-name {
-  font-family: var(--font-heading); /* Nutzt die Überschriften-Schriftart (Lato) */
-  font-size: 1.4em;                  /* Responsive: kleiner auf Mobile */
-  font-weight: 700;                  /* Fett */
-  color: var(--text-color);          /* Normale Textfarbe statt Link-Farbe */
-  vertical-align: middle;            /* Bessere vertikale Ausrichtung */
+  font-family: var(--font-heading);
+  font-size: 1.4em;
+  font-weight: 700;
+  color: var(--text-color);
+  vertical-align: middle;
 }
 
-/* Tablet und größer */
 @media (min-width: 768px) {
   #project-name {
     font-size: 1.6em;
   }
 }
 
-/* NEU: Hover-Effekt für den Projekt-Namen anpassen */
 #project-name:hover {
-  color: var(--text-color); /* Farbe soll sich nicht ändern */
-  text-decoration: none;    /* Keine Unterstreichung beim Hover */
+  color: var(--text-color);
+  text-decoration: none;
 }
 
-
-/* Platzhalter für die rechtsbündige Ausrichtung von Login etc. */
 .nav-item-right-aligned {
   margin-left: auto;
 }
@@ -367,7 +340,6 @@ footer {
   margin-top: 2em;
 }
 
-/* Tablet und größer */
 @media (min-width: 768px) {
   footer {
     padding: 2em 1em;
@@ -378,7 +350,7 @@ footer {
   color: var(--text-on-dark);
   text-decoration: none;
   margin: 0 10px;
-  font-weight: bold; /* Macht die Hauptlinks etwas wichtiger */
+  font-weight: bold;
 }
 
 .footer-links a:hover {
@@ -390,7 +362,6 @@ footer {
   color: var(--secondary-text-color);
 }
 
-/* NEU: Styling für die Quellenangaben */
 .footer-credits {
   margin: 1.5em 0;
   font-size: 0.85em;
@@ -406,7 +377,6 @@ footer {
   color: var(--link-hover);
 }
 
-/* Umbenannt von footer p zu .footer-copyright für mehr Klarheit */
 .footer-copyright {
   margin: 0;
   font-size: 0.9em;
@@ -428,7 +398,6 @@ footer {
   background-color: var(--content-bg);
 }
 
-/* Tablet und größer */
 @media (min-width: 768px) {
   .form-container {
     max-width: 500px;
@@ -476,7 +445,6 @@ button:hover {
   background-color: var(--button-bg-hover);
 }
 
-/* Helferklasse, um einen Link wie einen Button aussehen zu lassen */
 .button-link {
   display: block;
   background-color: var(--button-bg-color);
@@ -538,7 +506,6 @@ button:hover {
   width: 100%;
 }
 
-/* Tablet und größer */
 @media (min-width: 768px) {
   .search-bar {
     margin-right: 15px;
@@ -554,7 +521,6 @@ button:hover {
   gap: 0.5em;
 }
 
-/* Tablet und größer: Horizontales Layout */
 @media (min-width: 768px) {
   .search-bar form {
     flex-direction: row;
@@ -564,7 +530,6 @@ button:hover {
 }
 
 .search-bar label {
-  /* Label für Screenreader erhalten, aber visuell verstecken */
   position: absolute;
   width: 1px;
   height: 1px;
@@ -581,7 +546,6 @@ button:hover {
   margin-right: 0;
 }
 
-/* Tablet und größer */
 @media (min-width: 768px) {
   .search-bar input[type="search"] {
     width: auto;
@@ -608,14 +572,12 @@ button:hover {
   gap: 20px;
 }
 
-/* Tablet: 2 Spalten */
 @media (min-width: 768px) {
   .course-catalog-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Desktop: auto-fit mit mindestens 300px */
 @media (min-width: 1024px) {
   .course-catalog-grid {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -672,7 +634,6 @@ button:hover {
   flex-direction: column;
 }
 
-/* Tablet und größer */
 @media (min-width: 768px) {
   .nav-courses ul {
     flex-direction: row;
@@ -684,7 +645,6 @@ button:hover {
   margin-bottom: 0.5em;
 }
 
-/* Tablet und größer */
 @media (min-width: 768px) {
   .nav-courses li {
     margin-right: 15px;
@@ -732,6 +692,10 @@ button:hover {
   align-items: center;
 }
 
+#quiz-container .quiz-answers li {
+  background-image: none;
+}
+
 .quiz-answers label {
   padding: 8px;
   flex-grow: 1;
@@ -760,27 +724,24 @@ button:hover {
 | ===================================================================
 */
 
-/* (Das Logo kleiner machen, falls noch nicht geschehen) */
 .responsive-logo {
   max-height: 50px;
   width: auto;
 }
 
-/* Das Logo und der rechte Teil sollen untereinander (column) */
 .nav-main-content {
   flex-direction: column;
-  align-items: flex-start; /* Logo linksbündig */
+  align-items: flex-start;
 }
 
-/* Der rechte Teil (Suche + Links) ... */
 .nav-right {
-  flex-direction: column; /* ... soll auch seine Kinder stapeln */
-  width: 100%; /* Volle Breite nutzen */
-  align-items: flex-end; /* WICHTIG: Die Kinder rechtsbündig ausrichten */
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-end;
 }
 
 .search-bar {
-  width: 100%; /* Suchleiste soll volle Breite einnehmen */
+  width: 100%;
   margin-right: 0;
 }
 
@@ -789,22 +750,18 @@ button:hover {
 }
   
 .search-bar input[type="search"] {
-    flex-grow: 1; /* Suchfeld soll so breit wie möglich werden */
+    flex-grow: 1;
 }
 
-/* Die Login/Register-Links */
 .nav-right ul {
-  flex-direction: row; /* Links nebeneinander (in einer Reihe) */
-  width: auto; /* Nur so breit wie der Inhalt */
+  flex-direction: row;
+  width: auto;
 }
 
-/* Wir überschreiben die Desktop-Regel 'margin-right: 15px' */
 nav li {
-   /* 5px oben/unten, 10px links/rechts */
    margin: 5px 10px;
 }
 
-/* Den "Hallo"-Text auf Mobil ausblenden, spart Platz */
 .user-info {
   display: none;
 }
@@ -815,11 +772,8 @@ nav li {
 | ===================================================================
 */
 
-/* --- 1. Mobile-Ansicht (Standard) --- */
-/* Das ist die Basis: Das Menü ist versteckt, der Knopf ist sichtbar. */
-
 .burger-menu-button {
-  display: block; /* Knopf auf Mobil anzeigen */
+  display: block;
   background: none;
   border: none;
   color: var(--text-on-dark);
@@ -829,8 +783,8 @@ nav li {
 }
 
 .nav-courses ul {
-  display: none; /* Die Kursliste standardmäßig (auf Mobil) verstecken */
-  flex-direction: column; /* Links sollen untereinander */
+  display: none;
+  flex-direction: column;
   width: 100%;
 }
 
@@ -839,56 +793,49 @@ nav li {
   align-items: flex-start;
 }
 
-/* HIER PASSIERT DIE MAGIE:
-   Wenn unser JS die Klasse 'nav-courses-open' hinzufügt,
-   wird diese Regel aktiv und zeigt die Liste (ul) an! */
 .nav-courses.nav-courses-open ul {
-  display: flex; /* anzeigen! */
+  display: flex;
 }
 
 
 /*
 | ===================================================================
 |  Media Query: Regeln für GROSSE Bildschirme (Desktop)
-|  min-width = "alles, was GRÖSSER als 768px ist"
 | ===================================================================
 */
 @media (min-width: 769px) {
 
   
   .burger-menu-button {
-    display: none; /* ... den Burger-Knopf verstecken */
+    display: none;
   }
 
   .nav-courses ul {
-    display: flex; /* ... die Kursliste IMMER anzeigen */
-    flex-direction: row; /* ... und nebeneinander (row) anordnen */
+    display: flex;
+    flex-direction: row;
     width: auto;
   }
   
   .nav-courses {
-     /* (Falls du hier 'flex-direction: column' hattest, ändere es zurück) */
     flex-direction: row;
     align-items: center;
   }
 
   /* --- Desktop: Hauptnavigation --- */
-  
   .nav-main-content {
-    flex-direction: row; /* Auf Desktop wieder nebeneinander */
+    flex-direction: row;
     align-items: center;
-    /* justify-content: space-between; (sollte schon da sein) */
   }
 
   .nav-right {
-    flex-direction: row; /* Auch hier: nebeneinander */
+    flex-direction: row;
     width: auto;
     align-items: center;
   }
   
   .search-bar {
-    width: auto; /* Breite zurücksetzen */
-    margin-right: 15px; /* Desktop-Abstand wiederherstellen */
+    width: auto;
+    margin-right: 15px;
   }
   
   .search-bar form {
@@ -896,19 +843,17 @@ nav li {
   }
     
   .search-bar input[type="search"] {
-      flex-grow: 0; /* Normales Verhalten */
+      flex-grow: 0;
   }
   
-  /* Desktop-Abstände für Links wiederherstellen */
   nav li {
-    margin: 0; /* Mobile Marge zurücksetzen */
-    margin-right: 15px; /* Desktop Marge setzen */
-  }
+    margin: 0;
+    margin-right: 15px;
   
-  /* "Hallo"-Text auf Desktop wieder einblenden */
   .user-info {
     display: block;
   }
+}
 }
 
 /*
@@ -932,4 +877,21 @@ nav li {
   background-position: left center;
   background-size: 16px 16px;
   margin-bottom: 5px;
+}
+
+/*
+| ===================================================================
+|  Komponente: Statische Inhaltsseiten
+| ===================================================================
+*/
+.static-content-wrapper {
+  max-width: 800px; 
+  width: 90%;
+  margin: 0 auto;
+}
+
+@media (min-width: 800px) {
+  .static-content-wrapper {
+    width: 800px; 
+  }
 }
