@@ -6,11 +6,13 @@
 
 /* Google Fonts importieren (Nunito Sans & Lato) */
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Nunito+Sans:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Fascinate&family=Michroma&family=Pacifico&display=swap');
 
 :root {
   /* Schriftarten als CSS-Variablen deklarieren */
   --font-body: "Nunito Sans", sans-serif;
   --font-heading: "Lato", sans-serif;
+  --font-special: "Michroma", sans-serif;
 
   /* Links & Aktionen */
   --link-color: #2c8dc9;
@@ -304,7 +306,7 @@ nav li {
 }
 
 #project-name {
-  font-family: var(--font-heading);
+  font-family: var(--font-special);
   font-size: 1.4em;
   font-weight: 700;
   color: var(--text-color);
@@ -725,7 +727,7 @@ button:hover {
 */
 
 .responsive-logo {
-  max-height: 50px;
+  max-height: 100px;
   width: auto;
 }
 

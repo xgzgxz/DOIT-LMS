@@ -3,7 +3,7 @@
 // Sie bekommt vom CourseController die Variablen:
 // $course (Details des aktuellen Kurses)
 // $lessons (Lektionen des aktuellen Kurses)
-// $allCourses (Alle Kurse für die Sidebar - NEU DANK NAVBAR 2)
+// $allCourses (Alle Kurse für die Sidebar)
 // $isLoggedIn, $isEnrolled, $basePath
 ?>
 <div class="lesson-layout">
@@ -49,7 +49,7 @@
             echo '</div>';
         }
         if (isset($_GET['status']) && $_GET['status'] === 'error') {
-            // NEU: Wir nutzen unsere .form-message Klasse
+            // Wir nutzen unsere .form-message Klasse
             echo '<div class="form-message is-error">';
             echo '<strong>Bei der Einschreibung ist ein Fehler aufgetreten.</strong>';
             echo '</div>';

@@ -11,7 +11,7 @@
     <h2>Anbieter:</h2>
     <p>
         PinguWI<br>
-        c/o Max Mustermann (Dein Name)<br>
+        c/o Lea Wolf
         Musterstraße 1<br>
         12345 Musterstadt
     </p>

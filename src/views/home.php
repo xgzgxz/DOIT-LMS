@@ -12,7 +12,7 @@ if (isset($_SESSION['user'])) {
 } else {
     // ---- Fall 2: Benutzer ist NICHT eingeloggt (Gast) ----
 ?>
-    <h1>Willkommen auf unserem LMS!</h1>
+    <h1>Willkommen auf PinguWI - unserer interaktiven Lernplattform</h1>
     <p>Bitte <a href="<?php echo htmlspecialchars($basePath, ENT_QUOTES, 'UTF-8'); ?>/register">registriere dich</a> oder
         <a href="<?php echo htmlspecialchars($basePath, ENT_QUOTES, 'UTF-8'); ?>/login">logge dich ein</a>, um mit dem Lernen zu beginnen.
     </p>
@@ -34,8 +34,8 @@ if (!empty($allCourses)) {
     foreach ($allCourses as $course) {
         $courseUrl = htmlspecialchars($basePath . '/course?id=' . $course['course_id']);
         $courseTitle = htmlspecialchars($course['title']);
-        
-        // NEU: Beschreibung kürzen für die Vorschau
+
+        // Beschreibung kürzen für die Vorschau
         $description = htmlspecialchars($course['description']);
         if (strlen($description) > 150) {
             // Finde das letzte Leerzeichen vor dem 150. Zeichen
