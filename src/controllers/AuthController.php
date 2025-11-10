@@ -27,7 +27,7 @@ class AuthController
     /**
      * Kümmert sich um die Registrierung (Anzeige und Verarbeitung)
      */
-    public function register($basePath, $viewsPath)
+    public function register($basePath, $viewsPath): void
     {
         $errors = []; // Array für Fehlermeldungen
 
