@@ -1,23 +1,30 @@
 <?php
-// Die Klasse 'Quiz' kümmert sich um alle Datenbank-Aktionen,
-// die mit Quizzen zu tun haben.
 
+/**
+ * Manages all database interactions related to quizzes.
+ */
 class Quiz
 {
-    // Private Variable für die Datenbankverbindung
+    /**
+     * @var PDO The database connection instance.
+     */
     private $pdo;
 
-    // Der Konstruktor, der die $pdo-Verbindung entgegennimmt
+    /**
+     * Constructor for the Quiz model.
+     *
+     * @param PDO $pdo An active PDO database connection.
+     */
     public function __construct($pdo)
     {
         $this->pdo = $pdo;
     }
 
     /**
-     * Holt die Quizfrage und die zugehörigen Antworten für eine Lektions-ID.
+     * Fetches the quiz question and its corresponding answers for a given lesson ID.
      *
-     * @param int $lessonId Die ID der Lektion.
-     * @return array|false Ein Array mit Frage und Antworten, oder false.
+     * @param int $lessonId The ID of the lesson.
+     * @return array|false An array containing the question and answers, or false if not found.
      */
     public function getQuizByLessonId($lessonId)
     {
@@ -29,7 +36,6 @@ class Quiz
             $question = $stmtQuestion->fetch(PDO::FETCH_ASSOC);
 
             if ($question) {
-                // Frage gefunden, jetzt die Antworten holen.
                 $quizQuestionId = $question['quizquestion_id'];
                 $sqlAnswers = "SELECT quizanswer_id, answer_text, is_correct
                                FROM quiz_answers 
@@ -39,24 +45,24 @@ class Quiz
                 $stmtAnswers->execute([$quizQuestionId]);
                 $answers = $stmtAnswers->fetchAll(PDO::FETCH_ASSOC);
 
-                // Frage und Antworten zusammenbauen und zurückgeben.
                 return [
                     'question' => $question,
                     'answers' => $answers
                 ];
             } else {
-                // Keine Frage für diese Lektion gefunden.
                 return false;
             }
         } catch (PDOException $e) {
+            // In a real application, log the exception.
             return false;
         }
     }
+    
     /**
-     * Überprüft eine einzelne Antwort-ID auf ihre Korrektheit.
+     * Checks if a given answer ID corresponds to a correct answer.
      *
-     * @param int $answerId Die ID der ausgewählten Antwort.
-     * @return bool True, wenn die Antwort korrekt ist, sonst false.
+     * @param int $answerId The ID of the selected answer.
+     * @return bool True if the answer is correct, otherwise false.
      */
     public function checkAnswerById($answerId)
     {
@@ -65,10 +71,10 @@ class Quiz
         try {
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute([$answerId]);
-            // fetchColumn() holt nur den Wert der Spalte 'is_correct' (0 oder 1).
             $result = $stmt->fetchColumn();
             return (bool)$result;
         } catch (PDOException $e) {
+            // In a real application, log the exception.
             return false;
         }
     }

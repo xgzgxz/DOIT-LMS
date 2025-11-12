@@ -1,38 +1,37 @@
 <?php
-// Diese Datei ist die "View" für die Kurs-Detailseite.
-// Sie bekommt vom CourseController die Variablen:
-// $course (Details des aktuellen Kurses)
-// $lessons (Lektionen des aktuellen Kurses)
-// $allCourses (Alle Kurse für die Sidebar)
-// $isLoggedIn, $isEnrolled, $basePath
+/**
+ * Course Detail Page View.
+ *
+ * This view displays the details for a specific course, including its description,
+ * a list of lessons, and enrollment options. It also features a sidebar
+ * with a list of all available courses.
+ *
+ * @var array $course       Details of the current course.
+ * @var array $lessons      Lessons belonging to the current course.
+ * @var array $allCourses   All courses for the sidebar navigation.
+ * @var bool  $isLoggedIn   User's login status.
+ * @var bool  $isEnrolled   User's enrollment status for this course.
+ * @var string $basePath    The base path for URL generation.
+ */
 ?>
 <div class="lesson-layout">
 
     <aside class="sidebar">
         <h3>Alle Kurse</h3>
         <ul>
-            <?php
-            // Wir prüfen, ob $allCourses (vom Controller) Kurse enthält
-            if (!empty($allCourses)) {
-
-                // Wir durchlaufen alle Kurse
-                foreach ($allCourses as $sidebarCourse) {
+            <?php if (!empty($allCourses)): ?>
+                <?php foreach ($allCourses as $sidebarCourse):
                     $courseUrl = htmlspecialchars($basePath . '/course?id=' . $sidebarCourse['course_id']);
                     $courseTitle = htmlspecialchars($sidebarCourse['title']);
-
-                    // --- Aktiven Status prüfen ---
-                    // Wir prüfen, ob der Kurs in der Schleife ($sidebarCourse)
-                    // derselbe ist wie der Kurs, den wir gerade anzeigen ($course).
+                    // Determine if the sidebar item is the currently active course
                     $isActive = ($sidebarCourse['course_id'] == $course['course_id']);
                     $class = $isActive ? 'active' : '';
-
-                    // Wir geben das List-Item mit der (evtl. leeren) Klasse aus
-                    echo '<li class="' . $class . '">';
-                    echo '<a href="' . $courseUrl . '">' . $courseTitle . '</a>';
-                    echo '</li>';
-                }
-            }
-            ?>
+                ?>
+                    <li class="<?php echo $class; ?>">
+                        <a href="<?php echo $courseUrl; ?>"><?php echo $courseTitle; ?></a>
+                    </li>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </ul>
     </aside>
 
@@ -40,63 +39,53 @@
 
         <h1><?php echo htmlspecialchars($course['title']); ?></h1>
         <p><?php echo nl2br(htmlspecialchars($course['description'])); ?></p>
-        <?php
+        
+        <?php // Display feedback messages based on URL status parameters ?>
+        <?php if (isset($_GET['status']) && $_GET['status'] === 'enrolled'): ?>
+            <div class="form-message is-success">
+                <strong>Du wurdest erfolgreich für diesen Kurs eingeschrieben!</strong>
+            </div>
+        <?php elseif (isset($_GET['status']) && $_GET['status'] === 'error'): ?>
+            <div class="form-message is-error">
+                <strong>Bei der Einschreibung ist ein Fehler aufgetreten.</strong>
+            </div>
+        <?php endif; ?>
 
-        if (isset($_GET['status']) && $_GET['status'] === 'enrolled') {
-            // NEU: Wir nutzen unsere .form-message Klasse
-            echo '<div class="form-message is-success">';
-            echo '<strong>Du wurdest erfolgreich für diesen Kurs eingeschrieben!</strong>';
-            echo '</div>';
-        }
-        if (isset($_GET['status']) && $_GET['status'] === 'error') {
-            // Wir nutzen unsere .form-message Klasse
-            echo '<div class="form-message is-error">';
-            echo '<strong>Bei der Einschreibung ist ein Fehler aufgetreten.</strong>';
-            echo '</div>';
-        }
-
-        // Jetzt die 3 Fälle anzeigen:
-        if ($isLoggedIn) {
-            if ($isEnrolled) {
-                // Fall 1:
-
-                // Wir prüfen, ob die 'status=enrolled' Meldung NICHT gesetzt ist.
-                // Nur wenn sie NICHT gesetzt ist, zeigen wir die Standard-Meldung
-                // "Du bist bereits eingeschrieben" an.
-                // Das verhindert die doppelte Meldung direkt nach der Einschreibung.
-                if (!isset($_GET['status']) || $_GET['status'] !== 'enrolled') {
-                    echo '<p><strong>Du bist für diesen Kurs eingeschrieben.</strong></p>';
-                }
-            } else {
-                // Fall 2: Eingeloggt, aber NICHT eingeschrieben
-                // Wir zeigen den Button als Formular
-        ?>
+        <?php // Display enrollment status and actions ?>
+        <?php if ($isLoggedIn): ?>
+            <?php if ($isEnrolled): ?>
+                <?php // Show enrollment confirmation, but hide it if the user just enrolled to avoid redundancy. ?>
+                <?php if (!isset($_GET['status']) || $_GET['status'] !== 'enrolled'): ?>
+                    <p><strong>Du bist für diesen Kurs eingeschrieben.</strong></p>
+                <?php endif; ?>
+            <?php else: ?>
+                <?php // Show enrollment button for logged-in, non-enrolled users. ?>
                 <form action="<?php echo htmlspecialchars($basePath . '/enroll'); ?>" method="POST">
                     <input type="hidden" name="course_id" value="<?php echo $course['course_id']; ?>">
                     <button type="submit">Jetzt für diesen Kurs einschreiben</button>
                 </form>
-        <?php
-            }
-        } else {
-            // Fall 3: Nicht eingeloggt
-            $loginUrl = htmlspecialchars($basePath . '/login');
-            echo '<p>Bitte <a href="' . $loginUrl . '">einloggen</a>, um dich für diesen Kurs einzuschreiben.</p>';
-        }
-        echo '<hr>';
-        echo '<h2>Lektionen in diesem Kurs</h2>';
+            <?php endif; ?>
+        <?php else: ?>
+            <?php // Prompt non-logged-in users to log in. ?>
+            <p>Bitte <a href="<?php echo htmlspecialchars($basePath . '/login'); ?>">einloggen</a>, um dich für diesen Kurs einzuschreiben.</p>
+        <?php endif; ?>
+        
+        <hr>
+        <h2>Lektionen in diesem Kurs</h2>
 
-        if (!empty($lessons)) {
-            echo '<ul>';
-            foreach ($lessons as $lesson) {
-                $lessonUrl = htmlspecialchars($basePath . '/lesson?id=' . $lesson['lesson_id']);
-                $lessonTitle = htmlspecialchars($lesson['title']);
-                echo '<li><a href="' . $lessonUrl . '">' . $lessonTitle . '</a></li>';
-            }
-            echo '</ul>';
-        } else {
-            echo '<p>Für diesen Kurs sind noch keine Lektionen verfügbar.</p>';
-        }
-        ?>
+        <?php if (!empty($lessons)): ?>
+            <ul>
+                <?php foreach ($lessons as $lesson): ?>
+                    <li>
+                        <a href="<?php echo htmlspecialchars($basePath . '/lesson?id=' . $lesson['lesson_id']); ?>">
+                            <?php echo htmlspecialchars($lesson['title']); ?>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php else: ?>
+            <p>Für diesen Kurs sind noch keine Lektionen verfügbar.</p>
+        <?php endif; ?>
 
     </article>
 </div>
