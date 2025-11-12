@@ -1,24 +1,29 @@
+<?php
+/**
+ * Registration Page View.
+ *
+ * This view displays the user registration form. If there are any validation
+ * errors returned from the controller, they are displayed at the top of the form.
+ *
+ * @var array|null $errors   An array of validation error messages.
+ * @var string     $basePath The base path for URL generation.
+ */
+?>
 <h1>Registrierung</h1>
 <p>Bitte fülle das folgende Formular aus, um dich zu registrieren.</p>
 
 <div class="form-container">
 
-    <?php
-    // Wir prüfen, ob die $errors-Variable (vom AuthController)
-    // überhaupt existiert und ob sie nicht leer ist.
-    if (isset($errors) && !empty($errors)) {
-        // NEU: Wir nutzen unsere CSS-Klassen statt Inline-Style
-        echo '<div class="form-message is-error">';
-        echo '<strong>Es sind Fehler aufgetreten:</strong>';
-        echo '<ul>';
-        // Wir gehen jeden Fehler im Array durch und zeigen ihn an
-        foreach ($errors as $error) {
-            echo '<li>' . htmlspecialchars($error) . '</li>';
-        }
-        echo '</ul>';
-        echo '</div>';
-    }
-    ?>
+    <?php if (isset($errors) && !empty($errors)): ?>
+        <div class="form-message is-error">
+            <strong>Es sind Fehler aufgetreten:</strong>
+            <ul>
+                <?php foreach ($errors as $error): ?>
+                    <li><?php echo htmlspecialchars($error); ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
 
     <form action="<?php echo htmlspecialchars($basePath . '/register', ENT_QUOTES, 'UTF-8'); ?>" method="post">
         

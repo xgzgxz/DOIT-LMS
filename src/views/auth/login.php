@@ -1,42 +1,43 @@
+<?php
+/**
+ * Login Page View.
+ *
+ * This view displays the login form and handles various status messages,
+ * such as successful registration, logout confirmation, and login errors.
+ *
+ * @var array|null $errors   An array of error messages if login fails.
+ * @var string     $basePath The base path for URL generation.
+ */
+?>
 <h1>Anmelden</h1>
 <p>Bitte fülle das folgende Formular aus, um dich anzumelden.</p>
 
 <div class="form-container">
 
-    <?php
-    // --- START: ANGEPASSTE Statusmeldung (passt jetzt zum AuthController) ---
+    <?php // Display status messages based on URL parameters ?>
+    <?php if (isset($_GET['status'])): ?>
+        <?php if ($_GET['status'] === 'registered'): ?>
+            <div class="form-message is-success">
+                Registrierung erfolgreich! Du kannst dich jetzt einloggen.
+            </div>
+        <?php elseif ($_GET['status'] === 'logged_out'): ?>
+            <div class="form-message is-info">
+                Du wurdest erfolgreich ausgeloggt. Auf Wiedersehen!
+            </div>
+        <?php endif; ?>
+    <?php endif; ?>
 
-    // Prüfen, ob in der URL "?status=registered" steht
-    if (isset($_GET['status']) && $_GET['status'] === 'registered') {
-        echo '<div class="form-message is-success">';
-        echo 'Registrierung erfolgreich! Du kannst dich jetzt einloggen.';
-        echo '</div>';
-    }
-    // Prüfen, ob in der URL "?status=logged_out" steht
-    if (isset($_GET['status']) && $_GET['status'] === 'logged_out') {
-        echo '<div class="form-message is-info">';
-        echo 'Du wurdest erfolgreich ausgeloggt. Auf Wiedersehen!';
-        echo '</div>';
-    }
-    // --- ENDE: ANGEPASSTE Statusmeldung ---
-
-
-    // --- START: NEUER FEHLER-BLOCK ---
-    // Hier fangen wir die $errors-Variable auf, die der AuthController
-    // bei einem Fehler (z.B. "Passwort falsch") mitschickt.
-    if (isset($errors) && !empty($errors)) {
-        echo '<div class="form-message is-error">';
-        echo '<strong>Login fehlgeschlagen:</strong>';
-        echo '<ul>';
-        // Wir gehen jeden Fehler im Array durch und zeigen ihn an
-        foreach ($errors as $error) {
-            echo '<li>' . htmlspecialchars($error) . '</li>';
-        }
-        echo '</ul>';
-        echo '</div>';
-    }
-    // --- ENDE: NEUER FEHLER-BLOCK ---
-    ?>
+    <?php // Display login errors if they exist ?>
+    <?php if (isset($errors) && !empty($errors)): ?>
+        <div class="form-message is-error">
+            <strong>Login fehlgeschlagen:</strong>
+            <ul>
+                <?php foreach ($errors as $error): ?>
+                    <li><?php echo htmlspecialchars($error); ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
 
     <form action="<?php echo htmlspecialchars($basePath, ENT_QUOTES, 'UTF-8'); ?>/login" method="POST">
         <div class="form-group">

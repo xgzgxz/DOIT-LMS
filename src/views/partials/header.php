@@ -1,3 +1,15 @@
+<?php
+/**
+ * Global Header Partial.
+ *
+ * This file contains the top part of the HTML document, including the <head> section
+ * and the main navigation bar. It handles the display of different navigation links
+ * based on the user's authentication status (logged in or guest).
+ *
+ * @var string     $basePath   The base path for URL generation, used for links and assets.
+ * @var array|null $allCourses An array of all available courses for the secondary nav bar.
+ */
+?>
 <!DOCTYPE html>
 <html lang="de">
 
@@ -9,21 +21,19 @@
 </head>
 
 <body>
+
 <nav>
     <div class="nav-main-content">
-        
         <div class="nav-left">
             <a href="<?php echo htmlspecialchars($basePath, ENT_QUOTES, 'UTF-8'); ?>/" class="logo-link">
                 <img src="<?php echo htmlspecialchars($basePath, ENT_QUOTES, 'UTF-8'); ?>/img/logo.png" alt="PinguWI Logo" class="logo responsive-logo">
             </a>
-
             <ul>
-                 <li><a href="<?php echo htmlspecialchars($basePath, ENT_QUOTES, 'UTF-8'); ?>/" id="project-name">PinguWI</a></li>
+                <li><a href="<?php echo htmlspecialchars($basePath, ENT_QUOTES, 'UTF-8'); ?>/" id="project-name">PinguWI</a></li>
             </ul>
         </div>
 
         <div class="nav-right">
-            
             <div class="search-bar">
                 <form action="<?php echo htmlspecialchars($basePath, ENT_QUOTES, 'UTF-8'); ?>/search" method="GET">
                     <label for="search-query">Kurse suchen:</label>
@@ -33,62 +43,41 @@
             </div>
 
             <ul>
-                <?php
-                // isset() prüft, ob die Variable $_SESSION['user'] existiert.
-                if (isset($_SESSION['user'])) {
-                    // ---- Fall 1: Benutzer IST eingeloggt ----
-                ?>
+                <?php if (isset($_SESSION['user'])): ?>
+                    <?php // Links for logged-in users ?>
                     <li><a href="<?php echo htmlspecialchars($basePath, ENT_QUOTES, 'UTF-8'); ?>/my-courses">Meine Kurse</a></li>
                     <li><a href="<?php echo htmlspecialchars($basePath, ENT_QUOTES, 'UTF-8'); ?>/logout">Logout</a></li>
                     <li class="user-info">
                         Hallo, <?php echo htmlspecialchars($_SESSION['user']['username']); ?>!
                     </li>
-
-                <?php
-                } else {
-                    // ---- Fall 2: Benutzer ist NICHT eingeloggt (Gast) ----
-                ?>
-                    <li><a href="<?php echo $basePath; ?>/login">Login</a></li>
-                    <li><a href="<?php echo $basePath; ?>/register">Registrieren</a></li>
-                <?php
-                }
-                // --- ENDE DER LOGIK ---
-                ?>
+                <?php else: ?>
+                    <?php // Links for guests ?>
+                    <li><a href="<?php echo htmlspecialchars($basePath, ENT_QUOTES, 'UTF-8'); ?>/login">Login</a></li>
+                    <li><a href="<?php echo htmlspecialchars($basePath, ENT_QUOTES, 'UTF-8'); ?>/register">Registrieren</a></li>
+                <?php endif; ?>
             </ul>
+        </div>
+    </div>
+</nav>
 
-        </div> </div> </nav>
-
-    <nav class="nav-courses" id="nav-courses-bar">
-        
-        <button id="burger-menu-button" class="burger-menu-button">
-            ☰ Menü
-        </button>
-
-        <ul>
-            
-            <?php
-            // Wir prüfen, ob die Variable $allCourses überhaupt existiert 
-            // und ob sie Kurse enthält. (Sicher ist sicher)
-            if (isset($allCourses) && !empty($allCourses)) {
-                
-                // Wir durchlaufen alle Kurse
-         foreach ($allCourses as $navCourse) {
-                    $courseUrl = htmlspecialchars($basePath . '/course?id=' . $navCourse['course_id']);
-                    $courseTitle = htmlspecialchars($navCourse['title']);
-                    
-                    
-                    // Wir erstellen einen Link für jeden Kurs
-                    echo '<li>';
-                    echo '<a href="' . $courseUrl . '">' . $courseTitle . '</a>';
-                    echo '</li>';
-                }
-            } else {
-                // Fallback, falls mal was schiefgeht
-                echo '<li>Keine Kurse gefunden.</li>';
-            }
+<nav class="nav-courses" id="nav-courses-bar">
+    <button id="burger-menu-button" class="burger-menu-button">
+        ☰ Menü
+    </button>
+    <ul>
+        <?php if (isset($allCourses) && !empty($allCourses)): ?>
+            <?php foreach ($allCourses as $navCourse):
+                $courseUrl = htmlspecialchars($basePath . '/course?id=' . $navCourse['course_id']);
+                $courseTitle = htmlspecialchars($navCourse['title']);
             ?>
-            
-        </ul>
-    </nav>
+                <li>
+                    <a href="<?php echo $courseUrl; ?>"><?php echo $courseTitle; ?></a>
+                </li>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <li>Keine Kurse gefunden.</li>
+        <?php endif; ?>
+    </ul>
+</nav>
 
-    <main>
+<main>
