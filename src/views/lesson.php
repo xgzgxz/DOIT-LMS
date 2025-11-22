@@ -1,16 +1,16 @@
 <?php
 /**
- * Lesson Page View.
+ * Ansicht für eine Lektionsseite.
  *
- * This view displays the content of a single lesson, including its title and body.
- * It features a sidebar with a list of all lessons in the same course for easy navigation.
- * If a quiz is associated with the lesson, it is displayed at the bottom.
+ * Diese Ansicht zeigt den Inhalt einer einzelnen Lektion an, einschließlich Titel und Text.
+ * Sie verfügt über eine Seitenleiste mit einer Liste aller Lektionen desselben Kurses zur einfachen Navigation.
+ * Wenn der Lektion ein Quiz zugeordnet ist, wird dieses am Ende angezeigt.
  *
- * @var int    $lessonId       The ID of the current lesson.
- * @var array  $lesson         Details of the current lesson.
- * @var array  $sidebarLessons All lessons in the current course for the sidebar.
- * @var array|false $quizData  Data for the quiz, or false if none exists.
- * @var string $basePath       The base path for URL generation.
+ * @var int    $lessonId       Die ID der aktuellen Lektion.
+ * @var array  $lesson         Details der aktuellen Lektion.
+ * @var array  $sidebarLessons Alle Lektionen des aktuellen Kurses für die Seitenleiste.
+ * @var array|false $quizData  Daten für das Quiz, oder false, falls keines existiert.
+ * @var string $basePath       Der Basispfad für die URL-Generierung.
  */
 ?>
 <div class="lesson-layout">
@@ -22,7 +22,7 @@
                 <?php foreach ($sidebarLessons as $sidebarLesson):
                     $lessonUrl = htmlspecialchars($basePath . '/lesson?id=' . $sidebarLesson['lesson_id']);
                     $lessonTitle = htmlspecialchars($sidebarLesson['title']);
-                    // Determine if the sidebar item is the currently active lesson
+                    // Prüfen, ob der Seitenleisten-Eintrag die aktuell aktive Lektion ist
                     $isActive = ($sidebarLesson['lesson_id'] == $lessonId);
                     $class = $isActive ? 'active' : '';
                 ?>
@@ -47,7 +47,7 @@
                 <form id="quiz-form">
                     <ul class="quiz-answers">
                         <?php 
-                        // Shuffle answers to present them in a random order
+                        // Antworten mischen, um sie in zufälliger Reihenfolge darzustellen
                         $shuffledAnswers = $quizData['answers'];
                         shuffle($shuffledAnswers);
                         

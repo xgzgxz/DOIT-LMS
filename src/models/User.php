@@ -1,19 +1,19 @@
 <?php
 
 /**
- * Manages user data, including creation and authentication.
+ * Verwaltet Benutzerdaten, einschließlich Erstellung und Authentifizierung.
  */
 class User 
 {
     /**
-     * @var PDO The database connection instance.
+     * @var PDO Die Instanz der Datenbankverbindung.
      */
     private $pdo;
 
     /**
-     * Constructor for the User model.
+     * Konstruktor für das User-Modell.
      *
-     * @param PDO $pdo An active PDO database connection.
+     * @param PDO $pdo Eine aktive PDO-Datenbankverbindung.
      */
     public function __construct($pdo)
     {
@@ -21,16 +21,16 @@ class User
     }
 
     /**
-     * Creates a new user in the database.
+     * Erstellt einen neuen Benutzer in der Datenbank.
      *
-     * @param string $username The desired username.
-     * @param string $email The user's email address.
-     * @param string $password The user's plain-text password.
-     * @return bool|string True on success, or an error message string on failure.
+     * @param string $username Der gewünschte Benutzername.
+     * @param string $email Die E-Mail-Adresse des Benutzers.
+     * @param string $password Das Klartext-Passwort des Benutzers.
+     * @return bool|string True bei Erfolg oder eine Fehlermeldung als String bei einem Fehler.
      */
     public function createUser($username, $email, $password)
     {
-        // Hash the password for secure storage.
+        // Passwort für die sichere Speicherung hashen.
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         $sql = "INSERT INTO users (username, email, password_hash, user_role, created_at) 
@@ -42,23 +42,23 @@ class User
             return true;
 
         } catch (PDOException $e) {
-            // Check for a duplicate entry error (UNIQUE constraint violation).
+            // Auf einen Fehler wegen doppelten Eintrags prüfen (UNIQUE-Constraint-Verletzung).
             if ($e->getCode() == 23000) {
                 return 'E-Mail-Adresse oder Benutzername ist bereits vergeben.';
             }
             
-            // For other errors, return a generic message.
-            // In a real application, log the specific error.
+            // Bei anderen Fehlern eine generische Nachricht zurückgeben.
+            // In einer echten Anwendung sollte der spezifische Fehler geloggt werden.
             return 'Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.';
         }
     }
 
     /**
-     * Verifies user credentials and logs them in.
+     * Überprüft die Anmeldeinformationen eines Benutzers und meldet ihn an.
      *
-     * @param string $email The email provided by the user.
-     * @param string $password The plain-text password provided by the user.
-     * @return array|false User data as an array on successful login, otherwise false.
+     * @param string $email Die vom Benutzer angegebene E-Mail.
+     * @param string $password Das vom Benutzer angegebene Klartext-Passwort.
+     * @return array|false Benutzerdaten als Array bei erfolgreichem Login, andernfalls false.
      */
     public function loginUser($email, $password)
     {
@@ -71,10 +71,10 @@ class User
             $stmt->execute([$email]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            // Verify user existence and then the password.
+            // Überprüfen, ob der Benutzer existiert, und dann das Passwort verifizieren.
             if ($user && password_verify($password, $user['password_hash'])) {
                 
-                // On success, return user data for session storage (excluding the hash).
+                // Bei Erfolg die Benutzerdaten für die Session zurückgeben (ohne den Hash).
                 $loggedInUser = [
                     'user_id' => $user['user_id'],
                     'username' => $user['username'],
@@ -85,11 +85,11 @@ class User
                 return $loggedInUser;
             }
 
-            // If user not found or password incorrect, return false.
+            // Wenn der Benutzer nicht gefunden oder das Passwort falsch ist, false zurückgeben.
             return false;
 
         } catch (PDOException $e) {
-            // In a real application, log the exception.
+            // In einer echten Anwendung die Ausnahme loggen.
             return false;
         }
     }

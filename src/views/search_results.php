@@ -1,14 +1,14 @@
 <?php
 /**
- * Search Results Page View.
+ * Ansicht für die Suchergebnisseite.
  *
- * This view displays the results of a user's search query. It shows a grid
- * of courses that match the search term. If no courses are found, or if no
- * search term was provided, it displays an appropriate message.
+ * Diese Ansicht zeigt die Ergebnisse der Suchanfrage eines Benutzers an. Sie zeigt ein
+ * Raster von Kursen, die mit dem Suchbegriff übereinstimmen. Wenn keine Kurse gefunden
+ * werden oder kein Suchbegriff angegeben wurde, wird eine entsprechende Meldung angezeigt.
  *
- * @var array  $courses    An array of courses matching the search term.
- * @var string $searchTerm The user's original search query.
- * @var string $basePath   The base path for URL generation.
+ * @var array  $courses    Ein Array von Kursen, die mit dem Suchbegriff übereinstimmen.
+ * @var string $searchTerm Die ursprüngliche Suchanfrage des Benutzers.
+ * @var string $basePath   Der Basispfad für die URL-Generierung.
  */
 
 $safeTerm = htmlspecialchars($searchTerm, ENT_QUOTES, 'UTF-8');
@@ -24,7 +24,7 @@ $safeTerm = htmlspecialchars($searchTerm, ENT_QUOTES, 'UTF-8');
             $courseUrl = htmlspecialchars($basePath . '/course?id=' . $course['course_id']);
             $courseTitle = htmlspecialchars($course['title']);
             
-            // Truncate description for preview
+            // Beschreibung für die Vorschau kürzen
             $description = htmlspecialchars($course['description']);
             if (strlen($description) > 150) {
                 $lastSpace = strrpos(substr($description, 0, 150), ' ');

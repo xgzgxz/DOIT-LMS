@@ -1,12 +1,12 @@
 <?php
 /**
- * Registration Page View.
+ * Ansicht für die Registrierungsseite.
  *
- * This view displays the user registration form. If there are any validation
- * errors returned from the controller, they are displayed at the top of the form.
+ * Diese Ansicht zeigt das Benutzerregistrierungsformular an. Falls Validierungsfehler
+ * vom Controller zurückgegeben werden, werden diese oben im Formular angezeigt.
  *
- * @var array|null $errors   An array of validation error messages.
- * @var string     $basePath The base path for URL generation.
+ * @var array|null $errors   Ein Array mit Validierungsfehlermeldungen.
+ * @var string     $basePath Der Basispfad für die URL-Generierung.
  */
 ?>
 <h1>Registrierung</h1>

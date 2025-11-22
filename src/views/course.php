@@ -1,17 +1,17 @@
 <?php
 /**
- * Course Detail Page View.
+ * Ansicht für die Kurs-Detailseite.
  *
- * This view displays the details for a specific course, including its description,
- * a list of lessons, and enrollment options. It also features a sidebar
- * with a list of all available courses.
+ * Diese Ansicht zeigt die Details für einen bestimmten Kurs an, einschließlich seiner Beschreibung,
+ * einer Liste von Lektionen und Einschreibungsoptionen. Sie verfügt außerdem über eine Seitenleiste
+ * mit einer Liste aller verfügbaren Kurse.
  *
- * @var array $course       Details of the current course.
- * @var array $lessons      Lessons belonging to the current course.
- * @var array $allCourses   All courses for the sidebar navigation.
- * @var bool  $isLoggedIn   User's login status.
- * @var bool  $isEnrolled   User's enrollment status for this course.
- * @var string $basePath    The base path for URL generation.
+ * @var array $course       Details des aktuellen Kurses.
+ * @var array $lessons      Lektionen, die zum aktuellen Kurs gehören.
+ * @var array $allCourses   Alle Kurse für die Navigation in der Seitenleiste.
+ * @var bool  $isLoggedIn   Login-Status des Benutzers.
+ * @var bool  $isEnrolled   Einschreibungsstatus des Benutzers für diesen Kurs.
+ * @var string $basePath    Der Basispfad für die URL-Generierung.
  */
 ?>
 <div class="lesson-layout">
@@ -23,7 +23,7 @@
                 <?php foreach ($allCourses as $sidebarCourse):
                     $courseUrl = htmlspecialchars($basePath . '/course?id=' . $sidebarCourse['course_id']);
                     $courseTitle = htmlspecialchars($sidebarCourse['title']);
-                    // Determine if the sidebar item is the currently active course
+                    // Bestimmen, ob der Seitenleisten-Eintrag der aktuell aktive Kurs ist
                     $isActive = ($sidebarCourse['course_id'] == $course['course_id']);
                     $class = $isActive ? 'active' : '';
                 ?>
@@ -40,7 +40,7 @@
         <h1><?php echo htmlspecialchars($course['title']); ?></h1>
         <p><?php echo nl2br(htmlspecialchars($course['description'])); ?></p>
         
-        <?php // Display feedback messages based on URL status parameters ?>
+        <?php // Feedback-Nachrichten basierend auf URL-Statusparametern anzeigen ?>
         <?php if (isset($_GET['status']) && $_GET['status'] === 'enrolled'): ?>
             <div class="form-message is-success">
                 <strong>Du wurdest erfolgreich für diesen Kurs eingeschrieben!</strong>
@@ -51,22 +51,22 @@
             </div>
         <?php endif; ?>
 
-        <?php // Display enrollment status and actions ?>
+        <?php // Einschreibestatus und Aktionen anzeigen ?>
         <?php if ($isLoggedIn): ?>
             <?php if ($isEnrolled): ?>
-                <?php // Show enrollment confirmation, but hide it if the user just enrolled to avoid redundancy. ?>
+                <?php // Einschreibebestätigung anzeigen, aber ausblenden, wenn sich der Benutzer gerade erst eingeschrieben hat, um Redundanz zu vermeiden. ?>
                 <?php if (!isset($_GET['status']) || $_GET['status'] !== 'enrolled'): ?>
                     <p><strong>Du bist für diesen Kurs eingeschrieben.</strong></p>
                 <?php endif; ?>
             <?php else: ?>
-                <?php // Show enrollment button for logged-in, non-enrolled users. ?>
+                <?php // Einschreibebutton für eingeloggte, nicht eingeschriebene Benutzer anzeigen. ?>
                 <form action="<?php echo htmlspecialchars($basePath . '/enroll'); ?>" method="POST">
                     <input type="hidden" name="course_id" value="<?php echo $course['course_id']; ?>">
                     <button type="submit">Jetzt für diesen Kurs einschreiben</button>
                 </form>
             <?php endif; ?>
         <?php else: ?>
-            <?php // Prompt non-logged-in users to log in. ?>
+            <?php // Nicht eingeloggte Benutzer auffordern, sich einzuloggen. ?>
             <p>Bitte <a href="<?php echo htmlspecialchars($basePath . '/login'); ?>">einloggen</a>, um dich für diesen Kurs einzuschreiben.</p>
         <?php endif; ?>
         

@@ -1,13 +1,13 @@
 <?php
 /**
- * "My Courses" Page View.
+ * Ansicht für die Seite "Meine Kurse".
  *
- * This view displays a grid of all courses the currently logged-in user
- * is enrolled in. If the user is not enrolled in any courses, it prompts
- * them to browse the course catalog.
+ * Diese Ansicht zeigt ein Raster aller Kurse an, für die der aktuell eingeloggte
+ * Benutzer eingeschrieben ist. Wenn der Benutzer für keine Kurse eingeschrieben ist,
+ * wird er aufgefordert, den Kurskatalog zu durchsuchen.
  *
- * @var array  $myCourses An array of courses the user is enrolled in.
- * @var string $basePath  The base path for URL generation.
+ * @var array  $myCourses Ein Array der Kurse, für die der Benutzer eingeschrieben ist.
+ * @var string $basePath  Der Basispfad für die URL-Generierung.
  */
 ?>
 <h1>Meine Kurse</h1>
@@ -18,7 +18,7 @@
             $courseUrl = htmlspecialchars($basePath . '/course?id=' . $course['course_id']);
             $courseTitle = htmlspecialchars($course['title']);
             
-            // Truncate description for preview
+            // Beschreibung für die Vorschau kürzen
             $description = htmlspecialchars($course['description']);
             if (strlen($description) > 150) {
                 $lastSpace = strrpos(substr($description, 0, 150), ' ');

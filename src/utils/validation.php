@@ -9,10 +9,10 @@
  * in der gesamten Anwendung wiederverwendbar.
  *
  * Beispiel:
- * function validiereRegistrierung(array $daten): array
+ * function validateRegistration(array $data): array
  * {
- *     $fehler = [];
+ *     $errors = [];
  *     // ... Validierungsprüfungen ...
- *     return $fehler;
+ *     return $errors;
  * }
  */

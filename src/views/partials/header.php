@@ -1,13 +1,13 @@
 <?php
 /**
- * Global Header Partial.
+ * Globales Header-Partial.
  *
- * This file contains the top part of the HTML document, including the <head> section
- * and the main navigation bar. It handles the display of different navigation links
- * based on the user's authentication status (logged in or guest).
+ * Diese Datei enthält den oberen Teil des HTML-Dokuments, einschließlich des <head>-Abschnitts
+ * und der Hauptnavigationsleiste. Sie steuert die Anzeige verschiedener Navigationslinks
+ * basierend auf dem Authentifizierungsstatus des Benutzers (eingeloggt oder Gast).
  *
- * @var string     $basePath   The base path for URL generation, used for links and assets.
- * @var array|null $allCourses An array of all available courses for the secondary nav bar.
+ * @var string     $basePath   Der Basispfad für die URL-Generierung, wird für Links und Assets verwendet.
+ * @var array|null $allCourses Ein Array aller verfügbaren Kurse für die sekundäre Navigationsleiste.
  */
 ?>
 <!DOCTYPE html>
@@ -44,14 +44,14 @@
 
             <ul>
                 <?php if (isset($_SESSION['user'])): ?>
-                    <?php // Links for logged-in users ?>
+                    <?php // Links für eingeloggte Benutzer ?>
                     <li><a href="<?php echo htmlspecialchars($basePath, ENT_QUOTES, 'UTF-8'); ?>/my-courses">Meine Kurse</a></li>
                     <li><a href="<?php echo htmlspecialchars($basePath, ENT_QUOTES, 'UTF-8'); ?>/logout">Logout</a></li>
                     <li class="user-info">
                         Hallo, <?php echo htmlspecialchars($_SESSION['user']['username']); ?>!
                     </li>
                 <?php else: ?>
-                    <?php // Links for guests ?>
+                    <?php // Links für Gäste ?>
                     <li><a href="<?php echo htmlspecialchars($basePath, ENT_QUOTES, 'UTF-8'); ?>/login">Login</a></li>
                     <li><a href="<?php echo htmlspecialchars($basePath, ENT_QUOTES, 'UTF-8'); ?>/register">Registrieren</a></li>
                 <?php endif; ?>

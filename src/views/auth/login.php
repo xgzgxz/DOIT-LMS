@@ -1,12 +1,12 @@
 <?php
 /**
- * Login Page View.
+ * Ansicht für die Anmeldeseite.
  *
- * This view displays the login form and handles various status messages,
- * such as successful registration, logout confirmation, and login errors.
+ * Diese Ansicht zeigt das Anmeldeformular an und behandelt verschiedene Statusmeldungen,
+ * wie z.B. erfolgreiche Registrierung, Abmeldebestätigung und Anmeldefehler.
  *
- * @var array|null $errors   An array of error messages if login fails.
- * @var string     $basePath The base path for URL generation.
+ * @var array|null $errors   Ein Array mit Fehlermeldungen, falls die Anmeldung fehlschlägt.
+ * @var string     $basePath Der Basispfad für die URL-Generierung.
  */
 ?>
 <h1>Anmelden</h1>
@@ -14,7 +14,7 @@
 
 <div class="form-container">
 
-    <?php // Display status messages based on URL parameters ?>
+    <?php // Statusmeldungen basierend auf URL-Parametern anzeigen ?>
     <?php if (isset($_GET['status'])): ?>
         <?php if ($_GET['status'] === 'registered'): ?>
             <div class="form-message is-success">
@@ -27,7 +27,7 @@
         <?php endif; ?>
     <?php endif; ?>
 
-    <?php // Display login errors if they exist ?>
+    <?php // Anmeldefehler anzeigen, falls vorhanden ?>
     <?php if (isset($errors) && !empty($errors)): ?>
         <div class="form-message is-error">
             <strong>Login fehlgeschlagen:</strong>

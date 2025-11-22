@@ -1,12 +1,12 @@
 <?php
 /**
- * Home page view.
+ * Ansicht für die Startseite.
  *
- * This view displays a personalized welcome message to logged-in users
- * or a generic greeting to guests. It also shows a catalog of all available courses.
+ * Diese Ansicht zeigt eine personalisierte Willkommensnachricht für eingeloggte Benutzer
+ * oder eine allgemeine Begrüßung für Gäste an. Sie zeigt auch einen Katalog aller verfügbaren Kurse.
  *
- * @var array $allCourses An array of all courses fetched from the database.
- * @var string $basePath The base path for URL generation.
+ * @var array $allCourses Ein Array aller aus der Datenbank abgerufenen Kurse.
+ * @var string $basePath Der Basispfad für die URL-Generierung.
  */
 
 if (isset($_SESSION['user'])): ?>
@@ -28,7 +28,7 @@ if (isset($_SESSION['user'])): ?>
             $courseUrl = htmlspecialchars($basePath . '/course?id=' . $course['course_id']);
             $courseTitle = htmlspecialchars($course['title']);
 
-            // Truncate description for preview
+            // Beschreibung für die Vorschau kürzen
             $description = htmlspecialchars($course['description']);
             if (strlen($description) > 150) {
                 $lastSpace = strrpos(substr($description, 0, 150), ' ');

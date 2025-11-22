@@ -17,7 +17,7 @@ $authController = new AuthController($pdo);
 
 //wenn $pdo null ist, dann fehlerbehandlung fürs erste verlassen wir uns darauf, dass die Config richtig ist
 
-// 2. Verbessertes Routing
+// 2. Routing
 // Wir ermitteln den "Basis-Pfad", falls das Projekt in einem Unterordner läuft
 // holt sich den Pfad zur php datei, die gerade ausgeführt wird
 $scriptName = $_SERVER['SCRIPT_NAME']; // z.B. /projektordner/public/index.php

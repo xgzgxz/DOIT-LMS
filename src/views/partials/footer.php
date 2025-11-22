@@ -7,7 +7,6 @@
             <a href="<?php echo htmlspecialchars($basePath); ?>/datenschutz">Datenschutz</a>
         </div>
         
-        <!-- NEU: Abschnitt für die Quellenangaben -->
         <div class="footer-credits">
             <p>
                 Hintergrundbild von <a href="https://www.pexels.com/de-de/@neosiam" target="_blank" rel="noopener noreferrer">NEOSiAM</a> auf <a href="https://www.pexels.com/de-de/" target="_blank" rel="noopener noreferrer">Pexels</a>.
@@ -15,7 +14,6 @@
             </p>
         </div>
         
-        <!-- AKTUALISIERT: Copyright mit dynamischem Jahr und eigener Klasse -->
         <p class="footer-copyright">
             &copy; <?php echo date('Y'); ?> PinguWI. Alle Rechte vorbehalten.
         </p>
